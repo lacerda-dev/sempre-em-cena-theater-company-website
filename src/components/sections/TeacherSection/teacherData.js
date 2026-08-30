@@ -1,5 +1,5 @@
 import marcelo from "../../../assets/teachers/professor-marcelo.png";
-import luani from "../../../assets/teachers/professora-luani.png";
+import luani from "../../../assets/teachers/professora-luani.jpeg";
 
 export const teachers = [
   {
