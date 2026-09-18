@@ -12,7 +12,7 @@ Permitir que o administrador gerencie os eventos sem precisar alterar código.
 - Criar evento
 - Editar evento
 - Excluir evento
-- Upload de imagens
+- Upload de imagens de cada evento
 
 
 # Banco de Dados

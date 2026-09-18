@@ -7,8 +7,8 @@ export const teachers = [
     image: marcelo,
     name: "Marcelo",
     role: "Professor e Diretor de Teatro",
-    experience: 15,
-    bio: "Há mais de 15 anos utiliza o teatro como ferramenta de desenvolvimento humano, ajudando crianças e adolescentes a descobrirem confiança, criatividade e trabalho em equipe através da arte."
+    experience: experienceYears(2010),
+    bio: `Há mais de ${experienceYears(2010)} anos, utiliza o teatro como ferramenta de desenvolvimento humano, ajudando crianças e adolescentes a descobrirem confiança, criatividade e trabalho em equipe através da arte.`
   },
 
   {
@@ -16,8 +16,13 @@ export const teachers = [
     image: luani,
     name: "Luani",
     role: "Professora de Teatro e Intérprete de Libras",
-    experience: 5,
+    experience: experienceYears(2020),
     bio: "Une o teatro e a Libras para criar experiências acolhedoras e inclusivas, acreditando que a arte deve ser um espaço onde todos possam se expressar, aprender e pertencer."
   },
   
 ];
+
+function experienceYears(startDate){
+  const today = new Date()
+  return today.getFullYear() - startDate
+};
