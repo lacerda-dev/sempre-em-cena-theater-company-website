@@ -2,6 +2,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 
 import app from "./config";
@@ -14,6 +15,10 @@ export const login = (email, password) => {
 
 export const observeAuthState = (callback) => {
   return onAuthStateChanged(auth, callback);
+};
+
+export const logout = () => {
+  return signOut(auth);
 };
 
 export default auth;
