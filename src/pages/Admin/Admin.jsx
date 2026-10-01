@@ -32,40 +32,39 @@ export const Admin = () => {
       <Header />
 
       <main className="admin-container">
-        <h1>Área Administrativa</h1>
+        <div className="admin-form-content">
+          <h1>NOS BASTIDORES</h1>
+          <p>Acesse para gerenciar o conteúdo do site</p>
+        </div>
 
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">E-mail</label>
-
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="Digite seu e-mail"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password">Senha</label>
-
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="Digite sua senha"
-            />
-          </div>
-
-          {error && <p>{error}</p>}
-
-          <button type="submit">Entrar</button>
-        </form>
+        <div className="container-login">
+          <form onSubmit={handleSubmit} className="form-login">
+            <div>
+              <label htmlFor="email">E-mail</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="Digite seu e-mail"
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Senha</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="Digite sua senha"
+              />
+            </div>
+            {error && <p>{error}</p>}
+            <button type="submit" className="btn-login">Entrar</button>
+          </form>
+        </div>
       </main>
 
-      <Footer />
     </>
   );
 };

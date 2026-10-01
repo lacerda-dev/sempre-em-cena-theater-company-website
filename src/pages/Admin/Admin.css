@@ -1,4 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap");
+
 .admin-container {
-    padding: 138px 10px 50px 10px;
-    text-align: center;
+  padding: 138px 10px 50px 10px;
+  text-align: center;
+  height: 100vh;
+  background:
+    linear-gradient(rgba(3, 70, 129, 0.318), rgba(1, 25, 46, 0.548)),
+    url(../../assets/experience-images/experience-image3.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
 }
+.admin-container::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(1px);
+}
+.admin-form-content {
+  padding: 24px;
+  position: relative;
+  inset: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.507);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  color: #fafafa;
+  margin-bottom: 24px;
+}
+.admin-form-content h1 {
+  color: var(--red);
+  font-family: "Nothing You Could Do", cursive;
+  letter-spacing: 2px;
+  font-size: 3rem;
+  font-weight: bolder;
+}
+
+.admin-form-content p {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.container-login {
+  margin: auto;
+  width: 60%;
+  height: 35%;
+  padding: 14px;
+  background-color: #fafafa;
+  position: relative;
+  inset: 0;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(253, 253, 253, 0.29);
+}
+.form-login {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
