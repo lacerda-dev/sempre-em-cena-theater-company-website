@@ -1,38 +1,36 @@
-import { createServer } from "node:http";
+import express from "express";
+import { getEvents } from "./db.js";
 
 const evento = {
   titulo: "A peça de estreia",
   ano: 2026,
 };
 
-/*const server = createServer((req, res) => {
-  if (req.url === "/") {
-    res.end("Página Inicial");
-  } else if (req.url === "/gallery") {
-    res.setHeader('Content-Type', 'application/json')
-    res.end(eventojson);
-  } else {
-    res.statusCode = 404;
-    res.end("Página não encontrada");
-  }
-});
-
-server.listen(3000);*/
-
-import express from "express";
-
 const app = express();
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando!");
 });
 
-app.get('/gallery', (req, res) => {
-    res.json(evento)
-})
+app.get("/gallery", (req, res) => {
+  res.json(evento);
+});
 
-app.post('/gallery', (req, res) => {
-    res.send('Recebi uma requisição POST!')
-})
+app.get("/events", async (req, res) => {
+  try {
+    const events = await getEvents();
+    res.json(events);
+  } catch (error) {
+    console.error("Erro ao buscar eventos:", error.message);
+    res.status(500).json({ error: "Error interno do servidor" });
+  }
+});
 
-app.listen(3000)
+app.post("/gallery", (req, res) => {
+  console.log(req.body);
+  res.json(req.body);
+});
+
+app.listen(3000);
