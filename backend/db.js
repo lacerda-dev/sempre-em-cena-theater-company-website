@@ -20,6 +20,13 @@ export async function getEvents() {
   return result.rows;
 }
 
+export async function getEventById(eventId) {
+  const result = await pool.query("SELECT * FROM events WHERE id = $1", [
+    eventId,
+  ]);
+  return result.rows;
+}
+
 export async function getPhotosByEvent(eventId) {
   const result = await pool.query(
     "SELECT * FROM photos WHERE event_id = $1 ORDER BY id ASC",

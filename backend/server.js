@@ -1,5 +1,5 @@
 import express from "express";
-import { getEvents, getPhotosByEvent } from "./db.js";
+import { getEvents, getPhotosByEvent, getEventById } from "./db.js";
 
 const evento = {
   titulo: "A peça de estreia",
@@ -30,10 +30,16 @@ app.get("/gallery", async (req, res) => {
 
 app.get("/gallery/:eventId/photos", async (req, res) => {
   try {
-    const photos = await getPhotosByEvent(req.params.eventId);
-    res.json(photos);
+    const event = await getEventById(req.params.eventId);
+    if (event.length > 0) {
+      const photos = await getPhotosByEvent(req.params.eventId);
+      res.json(photos);
+    } else {
+      res.status(404).json({ error: "Evento não encontrado" });
+      return;
+    }
   } catch (error) {
-    console.error("Erro ao buscar imagens:", error.message);
+    console.error("Erro ao buscar evento:", error.message);
     res.status(500).json({ error: "Error interno do servidor" });
   }
 });
