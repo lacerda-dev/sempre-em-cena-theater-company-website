@@ -1,0 +1,9 @@
+POST http://localhost:3000/gallery
+Content-Type: application/json
+
+{
+    "title": "Matheus",
+    "description": "Um homeme, uma máquina, uma besta enjaulada.",
+    "event_date": "2026-10-14",
+    "cover_image_url": "https://example.com/capa.jpg"
+}

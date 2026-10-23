@@ -12,9 +12,11 @@ const pool = new Pool({
 
 export default pool;
 
+// Functions GET
+
 export async function getEvents() {
   const result = await pool.query(
-    "SELECT * FROM events ORDER BY event_date DESC",
+    "SELECT * FROM events ORDER BY id DESC",
   );
 
   return result.rows;
@@ -33,4 +35,14 @@ export async function getPhotosByEvent(eventId) {
     [eventId],
   );
   return result.rows;
+}
+
+// Functions POST
+
+export async function createEvent(title, description, date, cover) {
+  const result = await pool.query(
+    "INSERT INTO events (title, description, event_date, cover_image_url) VALUES ($1, $2, $3, $4) RETURNING *",
+    [title, description, date, cover],
+  );
+  return result.rows[0];
 }
