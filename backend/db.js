@@ -15,9 +15,7 @@ export default pool;
 // Functions GET
 
 export async function getEvents() {
-  const result = await pool.query(
-    "SELECT * FROM events ORDER BY id DESC",
-  );
+  const result = await pool.query("SELECT * FROM events ORDER BY id DESC");
 
   return result.rows;
 }
