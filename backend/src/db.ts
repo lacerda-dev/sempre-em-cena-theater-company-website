@@ -2,6 +2,8 @@ import pg from "pg";
 
 const { Pool } = pg;
 
+pg.types.setTypeParser(1082, (value) => value);
+
 const pool = new Pool({
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
@@ -17,7 +19,7 @@ interface Event {
   id: number;
   title: string;
   description: string | null;
-  event_date: Date | null;
+  event_date: string | null;
   cover_image_url: string | null;
 }
 
@@ -30,7 +32,9 @@ interface Photo {
 // GET functions
 
 export async function getEvents() {
-  const result = await pool.query<Event>("SELECT * FROM events ORDER BY id DESC");
+  const result = await pool.query<Event>(
+    "SELECT * FROM events ORDER BY id DESC",
+  );
   return result.rows;
 }
 
@@ -54,7 +58,7 @@ export async function getPhotosByEvent(eventId: number) {
 export async function createEvent(
   title: string,
   description: string | null,
-  date: Date | null,
+  date: string | null,
   cover: string | null,
 ) {
   const result = await pool.query<Event>(

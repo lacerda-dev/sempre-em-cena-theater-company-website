@@ -2,8 +2,8 @@ POST http://localhost:3000/gallery
 Content-Type: application/json
 
 {
-    "title": "Matheus",
-    "description": "Um homeme, uma máquina, uma besta enjaulada.",
-    "event_date": "2026-10-14",
-    "cover_image_url": "https://example.com/capa.jpg"
+  "title": "Peça de teste Data Nova",
+  "description": "Evento criado para testar a validação",
+  "event_date": "25/04/2026",
+  "cover_image_url": "https://exemplo.com/imagem.jpg"
 }

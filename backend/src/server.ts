@@ -1,4 +1,5 @@
 import express from "express";
+import { eventSchema } from "./eventSchema.js";
 import {
   getEvents,
   getEventById,
@@ -63,19 +64,35 @@ app.get("/gallery/:eventId/photos", async (req, res) => {
 
 // POST Requests
 
-
 // POST novo album
 app.post("/gallery", async (req, res) => {
   try {
-    const { title, description, event_date, cover_image_url } = req.body;
+    const result = eventSchema.safeParse(req.body);
 
-    const eventDescription = description || null;
-    const eventDate = event_date || null;
-    const eventCover = cover_image_url || null;
-
-    if (typeof title !== "string" || title.trim() === "") {
-      res.status(400).json({ error: "O título é obrigatório" });
+    if (!result.success) {
+      res.status(400).json({
+        error: "Dados inválidos",
+        details: result.error.issues,
+      });
       return;
+    }
+
+    const { title, event_date, description, cover_image_url } = result.data;
+
+    let eventDate: string | null = null;
+    let eventDescription: string | null = null;
+    let eventCover: string | null = null;
+
+    if (event_date) {
+      const dateData = event_date.split("/");
+      eventDate = `${dateData[2]}-${dateData[1]}-${dateData[0]}`;
+    }
+
+    if (description) {
+      eventDescription = description;
+    }
+    if (cover_image_url) {
+      eventCover = cover_image_url;
     }
 
     const newEvent = await createEvent(
